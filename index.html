@@ -12,7 +12,16 @@
 
 <body>
   <div>
-    <input type="text" placeholder="Enter the arrays with ',' eg.[1,2,3,4]" '">
+    <select name="Sorting Technique" id="Technique" style="width: 13rem;">
+      <option>Select Sorting Technique</option>
+      <option value="1">Bubblesort</option>
+      <option value="2">Quick Sort</option>
+      <option value="3">Merge Sort</option>
+      <option value="4">Selection Sort</option>
+      <option value="5">Insertion Sort</option>
+
+    </select>
+    <button type="submit" onclick="go()">Visualize</button>
   </div>
   <script src="index.js"></script>
 </body>
@@ -23,11 +32,6 @@
     margin: 0;
     padding: 0;
     background-color: #FFF
-  }
-
-  canvas {
-    display: block;
-
   }
 </style>
 

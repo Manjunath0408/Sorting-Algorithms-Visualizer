@@ -3,14 +3,51 @@ let w = 10;
 
 let states = [];
 
+function go(){
+  // console.log(values);
+ var technique = (document.getElementById("Technique").value);
+ console.log(technique);
+ if(technique == 1){
+   console.log("Bubble Sort");
+   BubbleSort(values, 0, values.length - 1);
+ }
+ else if(technique == 2){
+  console.log("Quick Sort");
+  quickSort(values, 0, values.length - 1);
+ }
+ else if(technique == 3){
+  console.log("Merge Sort");
+  // MergeSort(values, 0, values.length - 1);
+ }
+ else if(technique == 4){
+  console.log("Selection Sort");
+  SelectionSort(values, 0, values.length - 1);
+ }
+ else{
+  console.log("Insertion Sort");
+  InsertionSort(values, 0, values.length - 1);
+ }
+}
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - 25, windowHeight);
   values = new Array(floor(width / w));
   for (let i = 0; i < values.length; i++) {
     values[i] = random(height);
     states[i] = -1;
   }
-  quickSort(values, 0, values.length - 1);
+  
+}
+
+//Bubble sort
+
+async function BubbleSort(arr, start, end){
+  for(i=start;i+1<end;i++){
+    for(j=start;j < end-i-1;j++){
+      if(arr[j]>arr[j+1]){
+        await swap(arr, j, j+1);
+      }
+    }
+  }
 }
 
 async function quickSort(arr, start, end) {
@@ -53,6 +90,39 @@ async function partition(arr, start, end) {
   return pivotIndex;
 }
 
+async function equal(arr, i,j){
+  await sleep(10);
+  arr[i] = arr[j];
+}
+
+async function InsertionSort(arr, start, end) {
+  console.log("arr");
+  for(i=start;i<end;i++){
+    var cur = arr[i];
+    j = i-1;
+    while(j>=0 && arr[j] > cur){
+      // arr[j+1]=arr[j];
+      await equal(arr, j+1, j);
+      j--;
+    }
+    arr[j+1] = cur;
+  }
+}
+
+async function SelectionSort(arr, start, end){
+
+  for(i=0;i+1<end;i++){
+    var minidx = i;
+    for(j=i+1;j<end;j++){
+      if(arr[j]<arr[minidx]){
+        minidx = j;
+      }
+    }
+    await swap(arr, i, minidx);
+  }
+}
+      
+
 function draw() {
   background(0);
 
@@ -68,6 +138,8 @@ function draw() {
     rect(i * w, height - values[i], w, values[i]);
   }
 }
+
+
 
 async function swap(arr, a, b) {
   await sleep(10);
