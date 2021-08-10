@@ -2,10 +2,13 @@ let values = [];
 let w = 10;
 
 let states = [];
-
+var speedval = 10;
 function go() {
   // console.log(values);
-  var technique = document.getElementById("Technique").value;
+  var technique = document.getElementById("inputGroupSelect01").value;
+  speedval = document.getElementById("myRange").value;
+
+  console.log(speedval);
   console.log(technique);
   if (technique == 1) {
     console.log("Bubble Sort");
@@ -24,8 +27,10 @@ function go() {
   }
 }
 function setup() {
-  createCanvas(windowWidth - 25, windowHeight);
+  let canvas = createCanvas(windowWidth - 1, windowHeight-100);
   values = new Array(floor(width / w));
+  canvas.parent('canvas');  
+	canvas.style('display', 'block');
   for (let i = 0; i < values.length; i++) {
     values[i] = random(height);
     states[i] = -1;
@@ -143,7 +148,7 @@ async function BubbleSort(arr, start, end) {
   for (i = start; i < end; i++) {
     for (j = start; j <= end - i - 1; j++) {
       states[j] = 0;
-      await sleep(10);
+      await sleep(speedval);
       if (arr[j] > arr[j + 1]) {
         await swap(arr, j, j + 1);
       }
@@ -177,7 +182,7 @@ async function SelectionSort(arr, start, end) {
     states[i] = 1;
     for (j = i + 1; j <= end; j++) {
       states[j] = 0;
-      await sleep(20);
+      await sleep(speedval);
       if (arr[j] < arr[minidx]) {
         states[minidx] = -1;
         minidx = j;
@@ -211,19 +216,19 @@ function draw() {
 }
 
 async function swap(arr, a, b) {
-  await sleep(40);
+  await sleep(speedval);
   let temp = arr[a];
   arr[a] = arr[b];
   arr[b] = temp;
 }
 
 async function equal(arr, i, j) {
-  await sleep(10);
+  await sleep(speedval);
   arr[i] = arr[j];
 }
 
 async function copyIndex(arr1, arr2, a, b){
-  await sleep(10);
+  await sleep(speedval);
   arr1[a] = arr2[b];
 }
 function sleep(ms) {
