@@ -2,11 +2,11 @@ let values = [];
 let w = 10;
 
 let states = [];
-var speedval = 10;
+var speedval = 50;
 function go() {
   // console.log(values);
   var technique = document.getElementById("inputGroupSelect01").value;
-  speedval = document.getElementById("myRange").value;
+  speedval -= document.getElementById("myRange").value;
 
   console.log(speedval);
   console.log(technique);
